@@ -1,6 +1,5 @@
 #include <iostream>
 
-
 int main() {
     // ---------- ЗАДАНИЕ 1 ----------
     int N; // количество чисел
@@ -42,6 +41,42 @@ int main() {
         std::cout << "Его номер в последовательности = " << minIndex << std::endl;
     } else {
         std::cout << "\nНет чисел, не превышающих 10.12.\n";
+    }
+
+// ---------- ЗАДАНИЕ 2 ----------
+
+    int X; // переменная для числа
+    std::cout << "Введите целое число X (|X| < 1000): " << std::endl;
+    std::cin >> X;
+
+    // Проверяем условие |X| < 1000
+    if (X <= -1000 || X >= 1000) {
+        std::cout << "Ошибка: число должно быть в диапазоне -999 ... 999" << std::endl;
+        return 0;
+    }
+
+    int temp = X; // временная копия числа
+    if (temp < 0) temp = -temp; // убираем минус, если число отрицательное
+
+    int index = 0;// позиция цифры (справа налево)
+    int lastIndex = -1;// запоминаем индекс последней найденной 3
+    int position = 0;// счётчик цифр
+
+    while (temp > 0) {
+        int digit = temp % 10; // берём последнюю цифру
+        position++;
+        if (digit == 3) {
+            lastIndex = position; // сохраняем позицию последней 3
+        }
+        temp /= 10; // убираем последнюю цифру
+    }
+
+    if (lastIndex == -1) {
+        std::cout << "Цифры 3 нет." << std::endl;
+    } else {
+        int totalDigits = position;// сколько всего цифр
+        int indexFromLeft = totalDigits - lastIndex + 1;// считаем индекс слева
+        std::cout << "Индекс последней цифры 3: " << indexFromLeft << std::endl;
     }
 
     return 0;
