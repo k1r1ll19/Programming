@@ -1,17 +1,17 @@
 #include <iostream>
 
-// Функция для одного числа
-double oneNumber(int a) {
+void Midpoint(double left, double right);
+
+double calculate(int c) {
     std::cout << "Используется функция для одного числа (обратное значение)" << std::endl;
-    if (a == 0) {
+    if (c == 0) {
         std::cout << "Ошибка: нельзя делить на ноль!" << std::endl;
-        return 0;
+        return 0.0;
     }
-    return 1.0 / a; // возвращаем обратное значение числа
+    return 1.0 / c;
 }
 
-// Функция для двух чисел
-int twoNumbers(int a, int b) {
+int calculate(int a, int b) {
     std::cout << "Используется функция суммы квадратов (a*a + 2*a*b + b*b)" << std::endl;
     return a * a + 2 * a * b + b * b;
 }
@@ -22,27 +22,37 @@ int main() {
     std::cin >> choice;
 
     if (choice == 1) {
-        // Если выбран пункт 1 — вводим одно число
         int x;
         std::cout << "Введите одно целое число: ";
         std::cin >> x;
-
-        double result = oneNumber(x); // вызываем функцию для одного числа
+        double result = calculate(x);
         std::cout << "Результат: " << result << std::endl;
     }
     else if (choice == 2) {
-        // Если выбран пункт 2 — вводим два числа
         int a, b;
         std::cout << "Введите два целых числа через пробел: ";
         std::cin >> a >> b;
-
-        int result = twoNumbers(a, b); // вызываем функцию для двух чисел
+        int result = calculate(a, b);
         std::cout << "Результат: " << result << std::endl;
     }
     else {
-        // Если введён неправильный пункт
-        std::cout << "Ошибка: такого пункта нет!" << std::endl;
+        std::cout << "Ошибка: неправильный выбор!" << std::endl;
+        return 1;
     }
 
-    return 0; // конец программы
+    double left, right;
+    std::cout << "Теперь вычислим середину интервала" << std::endl;
+    std::cout << "Введите левый край интервала (a): ";
+    std::cin >> left;
+    std::cout << "Введите правый край интервала (b): ";
+    std::cin >> right;
+
+    if (left >= right) {
+        std::cout << "Ошибка: левый край интервала должен быть меньше правого!" << std::endl;
+        return 1;
+    }
+
+    Midpoint(left, right);
+
+    return 0;
 }
