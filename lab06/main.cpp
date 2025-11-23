@@ -217,4 +217,5 @@ int main() {
     std::cout << "После обмена: a = " << a << ", b = " << b << std::endl; 
     
     return 0;
+    
 }
