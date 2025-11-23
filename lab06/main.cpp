@@ -12,10 +12,9 @@ int* findZeroColumns(int** matrix, int rows, int cols, int& zeroCount) {
         for (int i = 0; i < rows; i++) {
             if (matrix[i][j] == 0) {
                 hasZero = true;
-                break;  // Достаточно найти один ноль в столбце
+                break;
             }
         }
-        // Если в столбце есть хотя бы один ноль, сохраняем его индекс
         if (hasZero) {
             tempZeroCols[zeroCount] = j;
             zeroCount++;
