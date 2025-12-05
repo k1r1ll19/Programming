@@ -117,20 +117,32 @@ void Sort_byValue(std::array<int, N> arr) {
 
 void Sort_byReference(std::array<int, N>& arr) {
     bool swapped = true;
-    int start = 0, end = N - 1;
+    int start = 0;
+    int end = N - 1;
 
     while (swapped) {
         swapped = false;
 
-        for (int i = start; i < end; i++)
-            if (arr[i] > arr[i+1]) std::swap(arr[i], arr[i+1]);
+        // Проход слева направо
+        for (int i = start; i < end; i++) {
+            if (arr[i] > arr[i + 1]) {
+                std::swap(arr[i], arr[i + 1]);
+                swapped = true;  // ← ЭТО ОБЯЗАТЕЛЬНО!
+            }
+        }
 
         if (!swapped) break;
+
         swapped = false;
         end--;
 
-        for (int i = end; i > start; i--)
-            if (arr[i] < arr[i-1]) std::swap(arr[i], arr[i-1]);
+        // Проход справа налево
+        for (int i = end; i > start; i--) {
+            if (arr[i] < arr[i - 1]) {
+                std::swap(arr[i], arr[i - 1]);
+                swapped = true; // ← ТОЖЕ!
+            }
+        }
 
         start++;
     }
