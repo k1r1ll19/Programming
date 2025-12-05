@@ -104,11 +104,7 @@ void Sort_byValue(std::array<int, N> arr) {
   
         start++;  
     }  
-/*
-    std::cout << "[ ";  
-    for (int x : arr) std::cout << x << " ";  
-    std::cout << "]\n";  
-*/
+
     std::cout << "СОРТИРОВКА ПО ЗНАЧЕНИЮ (исходный не меняется):\n";
     std::cout << "[ ";
     for (int x : arr) std::cout << x << " ";
@@ -127,7 +123,7 @@ void Sort_byReference(std::array<int, N>& arr) {
         for (int i = start; i < end; i++) {
             if (arr[i] > arr[i + 1]) {
                 std::swap(arr[i], arr[i + 1]);
-                swapped = true;  // ← ЭТО ОБЯЗАТЕЛЬНО!
+                swapped = true;
             }
         }
 
@@ -140,7 +136,7 @@ void Sort_byReference(std::array<int, N>& arr) {
         for (int i = end; i > start; i--) {
             if (arr[i] < arr[i - 1]) {
                 std::swap(arr[i], arr[i - 1]);
-                swapped = true; // ← ТОЖЕ!
+                swapped = true;
             }
         }
 
