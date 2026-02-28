@@ -37,6 +37,8 @@ Player& Player::operator=(const Player& other) {
 }
 
 Player::~Player() {
+    backpack.clear();
+    cout << "Run_Destructor" << endl;
 }
 
 //+ 
@@ -51,7 +53,9 @@ Player Player::operator+(const Player& other) {
     result.posY = (posY + other.posY) / 2;
     result.hp = hp;
     
-    result.backpack = backpack;
+    for (int i = 0; i < backpack.size(); i++) {
+        result.backpack.push_back(backpack[i]);
+    }
     
     for (int i = 0; i < other.backpack.size(); i++) {
         char item = other.backpack[i];
@@ -86,13 +90,17 @@ Player Player::operator-(const Player& other) {
     
     result.backpack = backpack;
     
-    for (int i = 0; i < result.backpack.size(); i++) {
-        if (result.backpack[i] == 'a') {
-            for (int j = i; j < result.backpack.size() - 1; j++) {
-                result.backpack[j] = result.backpack[j + 1];
+    for (int i = 0; i < other.backpack.size(); i++) {
+        if (rand() % 2 == 0) {
+            for (int j = 0; j < result.backpack.size(); j++) {
+                if (result.backpack[j] == other.backpack[i]) {
+                    for (int k = j; k < result.backpack.size() - 1; k++) {
+                        result.backpack[k] = result.backpack[k + 1];
+                    }
+                    result.backpack.pop_back();
+                    break;
+                }
             }
-            result.backpack.pop_back();
-            break;
         }
     }
     
@@ -123,7 +131,6 @@ Player Player::operator/(const Player& other) {
     
     return result;
 }
-
 
 void Player::show() {
     cout << "[" << name << "," << posX << "," << posY << ",(";
