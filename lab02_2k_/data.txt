@@ -1,0 +1,4 @@
+apple;pear;orange
+banana;;cherry;grape
+dog;cat
+mango;lemon;plum;kiwi
